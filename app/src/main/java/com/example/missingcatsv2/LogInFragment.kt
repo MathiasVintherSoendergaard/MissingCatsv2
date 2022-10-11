@@ -63,26 +63,29 @@ class LogInFragment : Fragment() {
                 }
             }
         }
-
-    }
-
-    companion object {
-        /**
-         * Use this factory method to create a new instance of
-         * this fragment using the provided parameters.
-         *
-         * @param param1 Parameter 1.
-         * @param param2 Parameter 2.
-         * @return A new instance of fragment LogInFragment.
-         */
-        // TODO: Rename and change types and number of parameters
-        @JvmStatic
-        fun newInstance(param1: String, param2: String) =
-            LogInFragment().apply {
-                arguments = Bundle().apply {
-                    putString(ARG_PARAM1, param1)
-                    putString(ARG_PARAM2, param2)
+        binding.buttonCreateUser.setOnClickListener {
+            val email = binding.emailInputField.text.toString().trim()
+            val password = binding.passwordInputField.text.toString().trim()
+            if (email.isEmpty()) {
+                binding.passwordInputField.error = "No email"
+                return@setOnClickListener
+            }
+            if (password.isEmpty()) {
+                binding.passwordInputField.error = "No password"
+                return@setOnClickListener
+            }
+            auth.createUserWithEmailAndPassword(email, password).addOnCompleteListener { task ->
+                if (task.isSuccessful) {
+                    binding.messageView.text = "User created. New please log in"
+                } else {
+                    binding.messageView.text = task.exception?.message
                 }
             }
+        }
+    }
+
+    override fun onDestroyView() {
+        super.onDestroyView()
+        _binding = null
     }
 }

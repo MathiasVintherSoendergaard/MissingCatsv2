@@ -73,6 +73,9 @@ class CatListFragment : Fragment() {
         binding.buttonFirst.setOnClickListener {
             findNavController().navigate(R.id.action_FirstFragment_to_SecondFragment)
         }
+        binding.buttonGoToLogIn.setOnClickListener {
+            findNavController().navigate(R.id.action_FirstFragment_to_logInFragment)
+        }
     }
 
     override fun onDestroyView() {
