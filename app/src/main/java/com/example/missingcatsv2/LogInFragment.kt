@@ -39,9 +39,12 @@ class LogInFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         val currentUser = auth.currentUser
+        // nedenstående udkommenterede skal først implementeres, når der kan logges ud igen
+        /*
         if (currentUser != null) {
             findNavController().navigate(R.id.action_logInFragment_to_FirstFragment)
         }
+         */
         binding.messageView.text = "Current user ${currentUser?.email}"
         binding.signIn.setOnClickListener {
             val email = binding.emailInputField.text.toString().trim()

@@ -2,8 +2,10 @@ package com.example.missingcatsv2.Fragments
 
 import android.content.res.Configuration
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
+import android.view.MenuItem
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.activityViewModels
@@ -13,6 +15,7 @@ import com.example.missingcatsv2.Models.CatsViewModel
 import com.example.missingcatsv2.MyAdapter
 import com.example.missingcatsv2.R
 import com.example.missingcatsv2.databinding.FragmentCatListBinding
+import com.google.android.material.snackbar.Snackbar
 
 /**
  * A simple [Fragment] subclass as the default destination in the navigation.
@@ -77,6 +80,20 @@ class CatListFragment : Fragment() {
             findNavController().navigate(R.id.action_FirstFragment_to_logInFragment)
         }
     }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        // boolean Return false to allow normal menu processing to proceed, true to consume it here.
+        // https://itecnote.com/tecnote/android-should-android-onoptionsitemselected-return-true-or-false/
+        Log.d("APPLE", item.toString())
+        when (item.itemId) {
+            R.id.action_settings ->
+                Snackbar.make(binding.catlistfragment, "Settings..", Snackbar.LENGTH_LONG).show()
+            R.id.action_logout ->
+                Snackbar.make(binding.catlistfragment, "Logout..", Snackbar.LENGTH_LONG).show()
+        }
+        return true
+    }
+
 
     override fun onDestroyView() {
         super.onDestroyView()
