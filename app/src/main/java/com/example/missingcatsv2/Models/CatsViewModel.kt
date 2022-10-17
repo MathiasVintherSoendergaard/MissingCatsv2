@@ -17,4 +17,9 @@ class CatsViewModel : ViewModel() {
     fun reload() {
         repository.getPosts()
     }
+
+    operator fun get(index: Int): Cat? {
+        return catsLiveData.value?.get(index)
+    }
+
 }

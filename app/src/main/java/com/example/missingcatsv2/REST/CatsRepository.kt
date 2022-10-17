@@ -35,13 +35,11 @@ class CatsRepository {
                 } else {
                     val message = response.code().toString() + " " + response.message()
                     errorMessageLiveData.postValue(message)
-                    Log.d("APPLE", message)
                 }
             }
 
             override fun onFailure(call: Call<List<Cat>>, t: Throwable) {
                 errorMessageLiveData.postValue(t.message)
-                Log.d("APPLE", t.message!!)
             }
         }
         )

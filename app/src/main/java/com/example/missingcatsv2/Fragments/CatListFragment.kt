@@ -43,8 +43,7 @@ class CatListFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-
-        catsViewModel.catsLiveData.observe(viewLifecycleOwner) {cats ->
+        catsViewModel.catsLiveData.observe(viewLifecycleOwner) { cats ->
             binding.recyclerView.visibility = if (cats == null) View.GONE else View.VISIBLE
 
             if (cats != null) {
@@ -63,16 +62,11 @@ class CatListFragment : Fragment() {
                     columns = 2
                 }
 
-
                 binding.recyclerView.layoutManager = GridLayoutManager(this.context, columns)
 
                 binding.recyclerView.adapter = adapter
             }
-        }
-
         catsViewModel.reload()
-
-
         binding.buttonFirst.setOnClickListener {
             findNavController().navigate(R.id.action_FirstFragment_to_SecondFragment)
         }
@@ -81,22 +75,14 @@ class CatListFragment : Fragment() {
         }
     }
 
-    override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        // boolean Return false to allow normal menu processing to proceed, true to consume it here.
-        // https://itecnote.com/tecnote/android-should-android-onoptionsitemselected-return-true-or-false/
-        Log.d("APPLE", item.toString())
-        when (item.itemId) {
-            R.id.action_settings ->
-                Snackbar.make(binding.catlistfragment, "Settings..", Snackbar.LENGTH_LONG).show()
-            R.id.action_logout ->
-                Snackbar.make(binding.catlistfragment, "Logout..", Snackbar.LENGTH_LONG).show()
-        }
-        return true
-    }
-
-
+}
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null
     }
 }
+
+
+
+
+

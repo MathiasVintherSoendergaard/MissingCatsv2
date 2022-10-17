@@ -27,7 +27,7 @@ class MyAdapter<T>(
     }
 
     class MyViewHolder(itemView: View, private val onItemClicked: (position: Int) -> Unit) :
-        RecyclerView.ViewHolder(itemView), View.OnClickListener {
+        ViewHolder(itemView), View.OnClickListener {
         val textView: TextView = itemView.findViewById(R.id.textview_list_item)
 
         init {
