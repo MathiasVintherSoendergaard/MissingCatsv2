@@ -38,13 +38,7 @@ class SecondFragment : Fragment() {
             binding.textviewSecond.text = "No such cat!"
             return
         } else {
-            binding.catNumber.text = cat.id.toString()
-            binding.catName.text = cat.name
-            binding.catDescription.text = cat.description
-            binding.catPlace.text = cat.place
-            binding.catReward.text = cat.reward.toString()
-            binding.catUserId.text = cat.userId
-            binding.catDate.text = cat.date.toString()
+            binding.catPresentation.text = cat.toString()
         }
 
 

@@ -29,7 +29,7 @@
             app:destination="@id/FirstFragment" />
         <argument
             android:name="Position"
-            app:argType="integer" />
+            app:argType="integer"/>
     </fragment>
     <fragment
         android:id="@+id/logInFragment"

@@ -8,6 +8,7 @@ data class Cat(
     // man ved jo aldrig
     override fun toString(): String {
         return "This cat is number $id, is called $name, lives at $place and belongs to user $userId. " +
+                "It is described as follows: $description, and has been missing since $date." +
                 "The reward for returning it is $reward."
     }
 }
