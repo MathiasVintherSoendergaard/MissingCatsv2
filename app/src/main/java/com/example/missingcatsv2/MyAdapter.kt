@@ -4,8 +4,12 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
+import androidx.navigation.fragment.NavHostFragment.Companion.findNavController
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.RecyclerView
 import androidx.recyclerview.widget.RecyclerView.ViewHolder
+import com.example.missingcatsv2.Fragments.CatListFragmentDirections
+
 
 class MyAdapter<T>(
     private val items: List<T>,
@@ -35,7 +39,8 @@ class MyAdapter<T>(
         }
 
         override fun onClick(p0: View?) {
-            TODO("Not yet implemented")
+            val position = bindingAdapterPosition
+            onItemClicked(position)
         }
     }
 }

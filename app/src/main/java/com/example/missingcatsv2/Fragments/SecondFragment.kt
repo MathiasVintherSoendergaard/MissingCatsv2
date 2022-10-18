@@ -29,7 +29,7 @@ class SecondFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        /*
+
         val bundle = requireArguments()
         val secondFragmentArgs: SecondFragmentArgs = SecondFragmentArgs.fromBundle(bundle)
         val position = secondFragmentArgs.position
@@ -43,11 +43,11 @@ class SecondFragment : Fragment() {
             binding.catDescription.text = cat.description
             binding.catPlace.text = cat.place
             binding.catReward.text = cat.reward.toString()
-            binding.catUserId.text = cat.userId.toString()
+            binding.catUserId.text = cat.userId
             binding.catDate.text = cat.date.toString()
         }
 
-         */
+
 
         binding.buttonSecond.setOnClickListener {
             findNavController().navigate(R.id.action_SecondFragment_to_FirstFragment)
