@@ -38,7 +38,7 @@ class SecondFragment : Fragment() {
             binding.textviewSecond.text = "No such cat!"
             return
         } else {
-            binding.catPresentation.text = cat.toString()
+            binding.catPresentation.text = cat.toLongString()
         }
 
 
