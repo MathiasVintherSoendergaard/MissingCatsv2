@@ -12,6 +12,7 @@ import androidx.navigation.ui.setupActionBarWithNavController
 import android.view.Menu
 import android.view.MenuItem
 import com.example.missingcatsv2.databinding.ActivityMainBinding
+import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.ktx.Firebase
 
@@ -41,6 +42,13 @@ class MainActivity : AppCompatActivity() {
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
         // Inflate the menu; this adds items to the action bar if it is present.
         menuInflater.inflate(R.menu.menu_main, menu)
+
+        if (FirebaseAuth.getInstance().currentUser == null) {
+            // TODO does not update after login: need observable property (ViewModel)
+            val menuItem = menu.findItem(R.id.action_logout)
+            menuItem.isVisible = false
+        }
+
         return true
     }
 

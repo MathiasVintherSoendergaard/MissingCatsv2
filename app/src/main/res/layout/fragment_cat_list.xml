@@ -19,41 +19,32 @@
             android:orientation="vertical"
             android:gravity="center">
 
-            <TextView
-                android:id="@+id/textview_first"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/hello_first_fragment"
-                app:layout_constraintBottom_toTopOf="@id/button_first"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
-
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/recyclerView"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:clickable="true"
                 />
 
             <Button
                 android:id="@+id/button_first"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/next"
+                android:text="@string/button_go_to_single_cat_fragment_label"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/textview_first" />
+                app:layout_constraintTop_toBottomOf="@id/recyclerView" />
 
             <Button
                 android:id="@+id/button_go_to_log_in"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Go to log in"
+                android:text="@string/button_go_to_log_in_create_user_fragment_label"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/textview_first" />
+                app:layout_constraintTop_toBottomOf="@id/button_first" />
 
         </LinearLayout>
 

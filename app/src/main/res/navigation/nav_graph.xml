@@ -3,41 +3,41 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/nav_graph"
-    app:startDestination="@id/FirstFragment">
+    app:startDestination="@id/CatListFragment">
 
     <fragment
-        android:id="@+id/FirstFragment"
+        android:id="@+id/CatListFragment"
         android:name="com.example.missingcatsv2.Fragments.CatListFragment"
-        android:label="@string/first_fragment_label"
+        android:label="@string/cat_list_fragment_label"
         tools:layout="@layout/fragment_cat_list">
 
         <action
             android:id="@+id/action_FirstFragment_to_SecondFragment"
-            app:destination="@id/SecondFragment" />
+            app:destination="@id/SingleCatFragment" />
         <action
             android:id="@+id/action_FirstFragment_to_logInFragment"
-            app:destination="@id/logInFragment" />
+            app:destination="@id/LogInFragment" />
     </fragment>
     <fragment
-        android:id="@+id/SecondFragment"
+        android:id="@+id/SingleCatFragment"
         android:name="com.example.missingcatsv2.Fragments.SecondFragment"
-        android:label="@string/second_fragment_label"
-        tools:layout="@layout/fragment_second">
+        android:label="@string/single_cat_fragment_label"
+        tools:layout="@layout/fragment_single_cat">
 
         <action
             android:id="@+id/action_SecondFragment_to_FirstFragment"
-            app:destination="@id/FirstFragment" />
+            app:destination="@id/CatListFragment" />
         <argument
             android:name="Position"
-            app:argType="integer"/>
+            app:argType="integer" />
     </fragment>
     <fragment
-        android:id="@+id/logInFragment"
+        android:id="@+id/LogInFragment"
         android:name="com.example.missingcatsv2.LogInFragment"
-        android:label="fragment_log_in"
-        tools:layout="@layout/fragment_log_in" >
+        android:label="@string/log_in_fragment_label"
+        tools:layout="@layout/fragment_log_in">
         <action
             android:id="@+id/action_logInFragment_to_FirstFragment"
-            app:destination="@id/FirstFragment" />
+            app:destination="@id/CatListFragment" />
     </fragment>
 </navigation>

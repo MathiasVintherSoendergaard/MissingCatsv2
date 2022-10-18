@@ -45,9 +45,10 @@ class CatListFragment : Fragment() {
 
         catsViewModel.catsLiveData.observe(viewLifecycleOwner) { cats ->
             binding.recyclerView.visibility = if (cats == null) View.GONE else View.VISIBLE
-
+            Log.d("Apple", "We are before if")
             if (cats != null) {
                 val adapter = MyAdapter(cats) { position ->
+                    Log.d("Apple", "Element number $position was pressed")
                     val action =
                         CatListFragmentDirections.actionFirstFragmentToSecondFragment(position)
                     findNavController().navigate(action)
@@ -66,7 +67,7 @@ class CatListFragment : Fragment() {
 
                 binding.recyclerView.adapter = adapter
             }
-        catsViewModel.reload()
+
             // nedenstående er til "next"-knappen, som jo nok skal slettes
         binding.buttonFirst.setOnClickListener {
             Log.d("Next button was pressed", "Next button was pressed")

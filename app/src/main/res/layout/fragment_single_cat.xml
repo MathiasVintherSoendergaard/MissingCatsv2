@@ -11,14 +11,14 @@
         android:id="@+id/cat_presentation"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Her er der en kat">
+        android:text="@string/single_cat_textview_placeholder">
     </TextView>
 
     <ImageView
         android:id="@+id/cat_picture"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:contentDescription="This is the cat"
+        android:contentDescription="@string/single_cat_imageview_placeholder"
         >
     </ImageView>
 
@@ -36,7 +36,7 @@
         android:id="@+id/button_second"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/previous"
+        android:text="@string/button_back_to_cat_list_fragment_label"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"

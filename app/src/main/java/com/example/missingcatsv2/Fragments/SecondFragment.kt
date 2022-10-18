@@ -9,13 +9,13 @@ import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.findNavController
 import com.example.missingcatsv2.Models.CatsViewModel
 import com.example.missingcatsv2.R
-import com.example.missingcatsv2.databinding.FragmentSecondBinding
+import com.example.missingcatsv2.databinding.FragmentSingleCatBinding
 
 /**
  * A simple [Fragment] subclass as the second destination in the navigation.
  */
 class SecondFragment : Fragment() {
-    private var _binding: FragmentSecondBinding? = null
+    private var _binding: FragmentSingleCatBinding? = null
     private val binding get() = _binding!!
     private val catsViewModel: CatsViewModel by activityViewModels()
 
@@ -23,7 +23,7 @@ class SecondFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        _binding = FragmentSecondBinding.inflate(inflater, container, false)
+        _binding = FragmentSingleCatBinding.inflate(inflater, container, false)
         return binding.root
     }
 
@@ -40,8 +40,6 @@ class SecondFragment : Fragment() {
         } else {
             binding.catPresentation.text = cat.toLongString()
         }
-
-
 
         binding.buttonSecond.setOnClickListener {
             findNavController().navigate(R.id.action_SecondFragment_to_FirstFragment)
