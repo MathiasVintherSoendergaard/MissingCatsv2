@@ -27,16 +27,6 @@
                 />
 
             <Button
-                android:id="@+id/button_first"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/button_go_to_single_cat_fragment_label"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/recyclerView" />
-
-            <Button
                 android:id="@+id/button_go_to_log_in"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -44,7 +34,7 @@
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/button_first" />
+                app:layout_constraintTop_toBottomOf="@id/recyclerView" />
 
         </LinearLayout>
 

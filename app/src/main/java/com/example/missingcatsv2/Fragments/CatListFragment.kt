@@ -68,13 +68,6 @@ class CatListFragment : Fragment() {
                 binding.recyclerView.adapter = adapter
             }
 
-            // nedenstående er til "next"-knappen, som jo nok skal slettes
-        binding.buttonFirst.setOnClickListener {
-            Log.d("Next button was pressed", "Next button was pressed")
-            val action =
-                CatListFragmentDirections.actionFirstFragmentToSecondFragment(1)
-            findNavController().navigate(action)
-        }
         binding.buttonGoToLogIn.setOnClickListener {
             Log.d("Go to login button was pressed", "Go to login button was pressed")
             findNavController().navigate(R.id.action_FirstFragment_to_logInFragment)
