@@ -11,6 +11,7 @@ import androidx.navigation.ui.navigateUp
 import androidx.navigation.ui.setupActionBarWithNavController
 import android.view.Menu
 import android.view.MenuItem
+import com.example.missingcatsv2.Models.AuthenticationViewModel
 import com.example.missingcatsv2.databinding.ActivityMainBinding
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
@@ -20,6 +21,7 @@ class MainActivity : AppCompatActivity() {
 
     private lateinit var appBarConfiguration: AppBarConfiguration
     private lateinit var binding: ActivityMainBinding
+    private val authenticationViewModel = AuthenticationViewModel()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -42,6 +44,19 @@ class MainActivity : AppCompatActivity() {
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
         // Inflate the menu; this adds items to the action bar if it is present.
         menuInflater.inflate(R.menu.menu_main, menu)
+
+        authenticationViewModel.getUserMutableLiveData().observe(this) { firebaseUser ->
+            val menuItemLogOut = menu.findItem(R.id.action_logout)
+            val menuItemLogIn = menu.findItem(R.id.action_login)
+            if (firebaseUser == null) {
+                menuItemLogIn.isVisible = true
+                menuItemLogOut.isVisible = false
+            } else {
+                menuItemLogIn.isVisible = false
+                menuItemLogOut.isVisible = true
+            }
+
+        }
 
         if (FirebaseAuth.getInstance().currentUser == null) {
             // TODO does not update after login: need observable property (ViewModel)
