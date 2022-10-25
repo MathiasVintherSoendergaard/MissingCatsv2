@@ -67,11 +67,6 @@ class CatListFragment : Fragment() {
 
                 binding.recyclerView.adapter = adapter
             }
-
-        binding.buttonGoToLogIn.setOnClickListener {
-            Log.d("Go to login button was pressed", "Go to login button was pressed")
-            findNavController().navigate(R.id.action_FirstFragment_to_logInFragment)
-        }
     }
 
 }

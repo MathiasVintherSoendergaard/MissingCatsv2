@@ -74,6 +74,11 @@ class MainActivity : AppCompatActivity() {
 
         return when (item.itemId) {
             R.id.action_settings -> true
+            R.id.action_login -> {
+                val navController = findNavController(R.id.nav_host_fragment_content_main)
+                navController.navigate(R.id.LogInFragment)
+                true
+            }
             R.id.action_logout -> {
                 if (Firebase.auth.currentUser != null) {
                     Firebase.auth.signOut()
