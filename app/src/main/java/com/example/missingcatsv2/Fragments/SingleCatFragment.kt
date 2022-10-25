@@ -14,7 +14,7 @@ import com.example.missingcatsv2.databinding.FragmentSingleCatBinding
 /**
  * A simple [Fragment] subclass as the second destination in the navigation.
  */
-class SecondFragment : Fragment() {
+class SingleCatFragment : Fragment() {
     private var _binding: FragmentSingleCatBinding? = null
     private val binding get() = _binding!!
     private val catsViewModel: CatsViewModel by activityViewModels()
@@ -31,8 +31,8 @@ class SecondFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         val bundle = requireArguments()
-        val secondFragmentArgs: SecondFragmentArgs = SecondFragmentArgs.fromBundle(bundle)
-        val position = secondFragmentArgs.position
+        val singleCatFragmentArgs: SingleCatFragmentArgs = SingleCatFragmentArgs.fromBundle(bundle)
+        val position = singleCatFragmentArgs.position
         val cat = catsViewModel[position]
         if (cat == null) {
             binding.textviewSecond.text = "No such cat!"
@@ -42,6 +42,10 @@ class SecondFragment : Fragment() {
         }
 
         binding.buttonSecond.setOnClickListener {
+            findNavController().navigate(R.id.action_SecondFragment_to_FirstFragment)
+        }
+
+        binding.catPresentation.setOnClickListener {
             findNavController().navigate(R.id.action_SecondFragment_to_FirstFragment)
         }
     }
