@@ -7,6 +7,17 @@
     android:orientation="vertical"
     android:gravity="center">
 
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:gravity="center">
+
+
     <EditText
         android:id="@+id/cat_name_input"
         android:layout_width="match_parent"
@@ -51,14 +62,14 @@
         android:inputType="text"
         android:padding="15dp">
     </EditText>
-    <!--
+
     <DatePicker
         android:id="@+id/cat_date_input"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:datePickerMode="spinner"
+        android:datePickerMode="calendar"
         />
-    -->
+    <!--
     <EditText
         android:id="@+id/cat_date_input"
         android:layout_width="match_parent"
@@ -67,7 +78,7 @@
         android:inputType="number"
         android:padding="15dp">
     </EditText>
-
+    -->
     <EditText
         android:id="@+id/cat_picture_url_input"
         android:layout_width="match_parent"
@@ -82,4 +93,10 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Report lost cat"/>
+
+
+        </LinearLayout>
+
+    </ScrollView>
+
 </LinearLayout>

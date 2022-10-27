@@ -48,16 +48,15 @@ class CreateCatFragment : Fragment() {
             val catPlace: String = binding.catPlaceInput.text.toString().trim()
             val catReward: Int = binding.catRewardInput.text.toString().trim().toInt()
             val catUserID: String = binding.catUserIdInput.text.toString().trim()
-            /*
+
             val catDay: Int = binding.catDateInput.dayOfMonth
             val catMonth: Int = binding.catDateInput.month
             val catYear: Int = binding.catDateInput.year
 
-             */
-            val catDate: Long = binding.catDateInput.text.toString().toLong()
+            val catDate: Long = 124856238764234 // binding.catDateInput.text.toString().toLong()
             val catPictureURL: String = binding.catPictureUrlInput.text.toString().trim()
 
-            val lostCat: Cat = Cat(0, catName, catDescription, catPlace, catReward, catUserID, catDate, catPictureURL)
+            val lostCat = Cat(0, catName, catDescription, catPlace, catReward, catUserID, catDate, catPictureURL)
 
             catsViewModel.add(lostCat)
 

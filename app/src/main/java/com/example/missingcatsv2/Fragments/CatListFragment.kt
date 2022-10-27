@@ -45,6 +45,7 @@ class CatListFragment : Fragment() {
 
         catsViewModel.catsLiveData.observe(viewLifecycleOwner) { cats ->
             binding.recyclerView.visibility = if (cats == null) View.GONE else View.VISIBLE
+            // TODO: remove all Log.d statements
             Log.d("Apple", "We are before if")
             if (cats != null) {
                 val adapter = MyAdapter(cats) { position ->
