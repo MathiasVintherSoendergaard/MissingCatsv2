@@ -5,6 +5,12 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.activityViewModels
+import com.example.missingcatsv2.Models.Cat
+import com.example.missingcatsv2.Models.CatsViewModel
+import com.example.missingcatsv2.databinding.FragmentCreateCatBinding
+import androidx.navigation.fragment.findNavController
+
 
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -18,23 +24,40 @@ private const val ARG_PARAM2 = "param2"
  */
 class CreateCatFragment : Fragment() {
     // TODO: Rename and change types of parameters
-    private var param1: String? = null
-    private var param2: String? = null
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        arguments?.let {
-            param1 = it.getString(ARG_PARAM1)
-            param2 = it.getString(ARG_PARAM2)
-        }
-    }
+
+    private var _binding: FragmentCreateCatBinding? = null
+    private val binding get() = _binding!!
+
+    private val catsViewModel: CatsViewModel by activityViewModels()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_create_cat, container, false)
+        _binding = FragmentCreateCatBinding.inflate(inflater, container, false)
+        return binding.root
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
+        binding.buttonCreateCat.setOnClickListener {
+            val catName: String = binding.catNameInput.text.toString().trim()
+            val catDescription: String = binding.catDescriptionInput.text.toString().trim()
+            val catPlace: String = binding.catPlaceInput.text.toString().trim()
+            val catReward: Int = binding.catRewardInput.text.toString().trim().toInt()
+            val catUserID: String = binding.catUserIdInput.text.toString().trim()
+            val catDate: Long = binding.catDateInput.text.toString().toLong()
+            val catPictureURL: String = binding.catPictureUrlInput.text.toString().trim()
+
+            val lostCat: Cat = Cat(0, catName, catDescription, catPlace, catReward, catUserID, catDate, catPictureURL)
+
+            catsViewModel.add(lostCat)
+
+            findNavController().popBackStack()
+        }
+
     }
 
     companion object {

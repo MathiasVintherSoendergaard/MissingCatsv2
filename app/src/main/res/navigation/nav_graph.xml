@@ -3,6 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/nav_graph"
+    android:label="@string/create_cat_fragment_label"
     app:startDestination="@id/CatListFragment">
 
     <fragment
@@ -46,8 +47,8 @@
     <fragment
         android:id="@+id/createCatFragment"
         android:name="com.example.missingcatsv2.CreateCatFragment"
-        android:label="fragment_create_cat"
-        tools:layout="@layout/fragment_create_cat" >
+        android:label="@string/create_cat_fragment_label"
+        tools:layout="@layout/fragment_create_cat">
         <action
             android:id="@+id/action_createCatFragment_to_CatListFragment"
             app:destination="@id/CatListFragment" />

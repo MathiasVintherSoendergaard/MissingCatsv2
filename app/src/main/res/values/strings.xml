@@ -4,6 +4,7 @@
     <!-- Strings used for fragments for navigation -->
     <string name="cat_list_fragment_label">Missing Cats</string>
     <string name="single_cat_fragment_label">Single Cat</string>
+    <string name="create_cat_fragment_label">Report Lost Cat</string>
     <string name="log_in_fragment_label">Log in or create user</string>
     <string name="button_go_to_single_cat_fragment_label">Go to Single cat fragment</string>
     <string name="button_back_to_cat_list_fragment_label">Back to Cat list fragment</string>

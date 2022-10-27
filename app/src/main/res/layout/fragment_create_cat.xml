@@ -4,52 +4,75 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".CreateCatFragment"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    android:gravity="center">
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="@string/hello_blank_fragment" />
     <EditText
+        android:id="@+id/cat_name_input"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="Name of the missing cat">
+        android:hint="Name of the missing cat"
+        android:inputType="text"
+        android:padding="15dp">
     </EditText>
 
     <EditText
+        android:id="@+id/cat_description_input"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="Description of the missing cat">
+        android:hint="Description of the missing cat"
+        android:inputType="text"
+        android:padding="15dp">
     </EditText>
 
     <EditText
+        android:id="@+id/cat_place_input"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="Place of the missing cat">
+        android:hint="Place of the missing cat"
+        android:inputType="text"
+        android:padding="15dp">
     </EditText>
 
     <EditText
+        android:id="@+id/cat_reward_input"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="Reward for returning the cat">
+        android:hint="Reward for returning the cat"
+        android:inputType="number"
+        android:padding="15dp">
     </EditText>
 
     <EditText
+        android:id="@+id/cat_user_id_input"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="The cat's user id">
+        android:hint="The cat's user id"
+        android:inputType="text"
+        android:padding="15dp">
     </EditText>
 
     <EditText
+        android:id="@+id/cat_date_input"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="The date the cat went missing">
+        android:hint="The date the cat went missing"
+        android:inputType="number"
+        android:padding="15dp">
     </EditText>
 
     <EditText
+        android:id="@+id/cat_picture_url_input"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="URL for a picture of a cat">
+        android:hint="URL for a picture of a cat"
+        android:inputType="text"
+        android:padding="15dp">
     </EditText>
+
+    <Button
+        android:id="@+id/button_create_cat"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Report lost cat"/>
 </LinearLayout>

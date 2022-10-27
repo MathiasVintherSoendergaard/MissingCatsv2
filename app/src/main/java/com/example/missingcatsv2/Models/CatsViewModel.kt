@@ -15,11 +15,15 @@ class CatsViewModel : ViewModel() {
     }
 
     fun reload() {
-        repository.getPosts()
+        repository.getCats()
     }
 
     operator fun get(index: Int): Cat? {
         return catsLiveData.value?.get(index)
+    }
+
+    fun add(cat: Cat) {
+        repository.addCat(cat)
     }
 
 }

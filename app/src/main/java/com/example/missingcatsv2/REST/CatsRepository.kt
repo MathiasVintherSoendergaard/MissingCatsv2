@@ -22,10 +22,10 @@ class CatsRepository {
             .addConverterFactory(GsonConverterFactory.create())
             .build()
         catsService = build.create(CatsService::class.java)
-        getPosts()
+        getCats()
     }
 
-    fun getPosts() {
+    fun getCats() {
         catsService.getAllCats().enqueue(object : Callback<List<Cat>> {
             override fun onResponse(call: Call<List<Cat>>, response: Response<List<Cat>>) {
                 if (response.isSuccessful) {
@@ -41,7 +41,27 @@ class CatsRepository {
             override fun onFailure(call: Call<List<Cat>>, t: Throwable) {
                 errorMessageLiveData.postValue(t.message)
             }
-        }
-        )
+        })
+    }
+
+    fun addCat(cat: Cat) {
+        catsService.saveCat(cat).enqueue(object : Callback<Cat> {
+            override fun onResponse(call: Call<Cat>, response: Response<Cat>) {
+                if (response.isSuccessful) {
+                    Log.d("APPLE", "Added: " + response.body())
+                    updateMessageLiveData.postValue("Added: " + response.body())
+                    getCats()
+                } else {
+                    val message = response.code().toString() + " " + response.message()
+                    errorMessageLiveData.postValue(message)
+                    Log.d("APPLE", message)
+                }
+            }
+
+            override fun onFailure(call: Call<Cat>, t: Throwable) {
+                errorMessageLiveData.postValue(t.message)
+                Log.d("APPLE", t.message!!)
+            }
+        })
     }
 }

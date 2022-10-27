@@ -68,6 +68,9 @@ class CatListFragment : Fragment() {
                 binding.recyclerView.adapter = adapter
             }
     }
+        binding.buttonCreateCat.setOnClickListener {
+            findNavController().navigate(R.id.action_CatListFragment_to_createCatFragment)
+        }
 
 }
     override fun onDestroyView() {

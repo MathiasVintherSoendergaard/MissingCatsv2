@@ -7,4 +7,7 @@ import retrofit2.http.*
 interface CatsService {
     @GET("cats")
     fun getAllCats(): Call<List<Cat>>
+
+    @POST("cats")
+    fun saveCat(@Body cat: Cat): Call<Cat>
 }
