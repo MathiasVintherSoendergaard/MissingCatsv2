@@ -5,6 +5,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.findNavController
 import com.example.missingcatsv2.Models.AuthenticationViewModel
 import com.example.missingcatsv2.databinding.FragmentLogInBinding
@@ -26,7 +27,9 @@ class LogInFragment : Fragment() {
     // TODO: Rename and change types of parameters
     private var _binding: FragmentLogInBinding? = null
     private val binding get() = _binding!!
+    // auth er probably overflødig nu
     private lateinit var auth: FirebaseAuth
+    private val authenticationViewModel: AuthenticationViewModel by activityViewModels()
 
 
     override fun onCreateView(
@@ -40,26 +43,26 @@ class LogInFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        val currentUser = auth.currentUser
-        // nedenstående udkommenterede skal først implementeres, når der kan logges ud igen
-        /*
-        if (currentUser != null) {
-            findNavController().navigate(R.id.action_logInFragment_to_FirstFragment)
-        }
-         */
+        val currentUser = authenticationViewModel.userMutableLiveData.value
+
         binding.messageView.text = "Current user ${currentUser?.email}"
         binding.signIn.setOnClickListener {
             val email = binding.emailInputField.text.toString().trim()
             val password = binding.passwordInputField.text.toString().trim()
+
             if (email.isEmpty()) {
                 binding.emailInputField.error = "No email"
                 return@setOnClickListener
             }
+
             if (password.isEmpty()) {
                 binding.passwordInputField.error = "No password"
                 return@setOnClickListener
             }
 
+            authenticationViewModel.logIn(email, password)
+
+        /*
             auth.signInWithEmailAndPassword(email, password).addOnCompleteListener { task ->
                 if (task.isSuccessful) {
                     findNavController().navigate(R.id.action_logInFragment_to_FirstFragment)
@@ -67,6 +70,7 @@ class LogInFragment : Fragment() {
                     binding.messageView.text = task.exception?.message
                 }
             }
+            */
         }
         binding.buttonCreateUser.setOnClickListener {
             val email = binding.emailInputField.text.toString().trim()
@@ -79,6 +83,8 @@ class LogInFragment : Fragment() {
                 binding.passwordInputField.error = "No password"
                 return@setOnClickListener
             }
+            authenticationViewModel.register(email, password)
+            /*
             auth.createUserWithEmailAndPassword(email, password).addOnCompleteListener { task ->
                 if (task.isSuccessful) {
                     binding.messageView.text = "User created. New please log in"
@@ -86,6 +92,7 @@ class LogInFragment : Fragment() {
                     binding.messageView.text = task.exception?.message
                 }
             }
+             */
         }
     }
 

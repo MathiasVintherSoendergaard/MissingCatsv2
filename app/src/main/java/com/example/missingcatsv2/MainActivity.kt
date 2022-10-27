@@ -11,9 +11,11 @@ import androidx.navigation.ui.navigateUp
 import androidx.navigation.ui.setupActionBarWithNavController
 import android.view.Menu
 import android.view.MenuItem
+import androidx.activity.viewModels
 import com.example.missingcatsv2.Models.AuthenticationViewModel
 import com.example.missingcatsv2.databinding.ActivityMainBinding
 import com.google.firebase.auth.FirebaseAuth
+
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.ktx.Firebase
 
@@ -21,7 +23,7 @@ class MainActivity : AppCompatActivity() {
 
     private lateinit var appBarConfiguration: AppBarConfiguration
     private lateinit var binding: ActivityMainBinding
-    private val authenticationViewModel = AuthenticationViewModel()
+    private val authenticationViewModel: AuthenticationViewModel by viewModels()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -45,7 +47,7 @@ class MainActivity : AppCompatActivity() {
         // Inflate the menu; this adds items to the action bar if it is present.
         menuInflater.inflate(R.menu.menu_main, menu)
 
-        authenticationViewModel.getUserMutableLiveData().observe(this) { firebaseUser ->
+        authenticationViewModel.userMutableLiveData.observe(this) { firebaseUser ->
             val menuItemLogOut = menu.findItem(R.id.action_logout)
             val menuItemLogIn = menu.findItem(R.id.action_login)
             if (firebaseUser == null) {
@@ -80,6 +82,14 @@ class MainActivity : AppCompatActivity() {
                 true
             }
             R.id.action_logout -> {
+                if (authenticationViewModel.userMutableLiveData.value != null) {
+                    authenticationViewModel.signOut()
+                    val navController = findNavController(R.id.nav_host_fragment_content_main)
+                    navController.popBackStack(R.id.catlistfragment, false)
+                } else {
+                    Snackbar.make(binding.root, "Cannot sign out", Snackbar.LENGTH_LONG).show()
+                }
+                /*
                 if (Firebase.auth.currentUser != null) {
                     Firebase.auth.signOut()
                     val navController = findNavController(R.id.nav_host_fragment_content_main)
@@ -87,6 +97,8 @@ class MainActivity : AppCompatActivity() {
                 } else {
                     Snackbar.make(binding.root, "Cannot sign out", Snackbar.LENGTH_LONG).show()
                 }
+
+                 */
                 true
             }
             else -> super.onOptionsItemSelected(item)

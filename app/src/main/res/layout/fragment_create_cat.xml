@@ -51,7 +51,14 @@
         android:inputType="text"
         android:padding="15dp">
     </EditText>
-
+    <!--
+    <DatePicker
+        android:id="@+id/cat_date_input"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:datePickerMode="spinner"
+        />
+    -->
     <EditText
         android:id="@+id/cat_date_input"
         android:layout_width="match_parent"

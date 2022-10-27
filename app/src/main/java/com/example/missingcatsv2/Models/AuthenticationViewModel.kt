@@ -8,19 +8,23 @@ import com.example.missingcatsv2.REST.AuthenticationRepository
 import com.google.firebase.auth.FirebaseUser
 
 class AuthenticationViewModel(): ViewModel() {
-    private val authenticationRepository: AuthenticationRepository
-    private val userMutableLiveData: MutableLiveData<FirebaseUser>
+    private val authenticationRepository: AuthenticationRepository = AuthenticationRepository()
+    val userMutableLiveData: MutableLiveData<FirebaseUser> = authenticationRepository.userMutableLiveData
     init {
-        authenticationRepository = AuthenticationRepository()
-        userMutableLiveData = authenticationRepository.getUserMutableLiveData()
+
     }
 
     fun register(email: String, password: String) {
         authenticationRepository.register(email, password)
     }
 
-    fun getUserMutableLiveData(): MutableLiveData<FirebaseUser> {
-        return userMutableLiveData
+    fun logIn(email: String, password: String) {
+        authenticationRepository.logIn(email, password)
     }
+
+    fun signOut(){
+        authenticationRepository.signOut()
+    }
+
 
 }
