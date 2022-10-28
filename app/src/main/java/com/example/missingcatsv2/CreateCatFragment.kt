@@ -11,6 +11,7 @@ import com.example.missingcatsv2.Models.Cat
 import com.example.missingcatsv2.Models.CatsViewModel
 import com.example.missingcatsv2.databinding.FragmentCreateCatBinding
 import androidx.navigation.fragment.findNavController
+import com.example.missingcatsv2.Models.AuthenticationViewModel
 import java.util.*
 
 
@@ -32,6 +33,7 @@ class CreateCatFragment : Fragment() {
     private val binding get() = _binding!!
 
     private val catsViewModel: CatsViewModel by activityViewModels()
+    private val authenticationViewModel: AuthenticationViewModel by activityViewModels()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -49,7 +51,7 @@ class CreateCatFragment : Fragment() {
             val catDescription: String = binding.catDescriptionInput.text.toString().trim()
             val catPlace: String = binding.catPlaceInput.text.toString().trim()
             val catReward: Int = binding.catRewardInput.text.toString().trim().toInt()
-            val catUserID: String = binding.catUserIdInput.text.toString().trim()
+            val catUserID: String = authenticationViewModel.userMutableLiveData.value?.email.toString() // binding.catUserIdInput.text.toString().trim()
 
             val calendar: Calendar = Calendar.getInstance()
             calendar.set(binding.catDateInput.year, binding.catDateInput.month, binding.catDateInput.dayOfMonth)

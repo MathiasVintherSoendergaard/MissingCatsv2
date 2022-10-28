@@ -7,6 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.findNavController
+import com.example.missingcatsv2.Models.AuthenticationViewModel
 import com.example.missingcatsv2.Models.CatsViewModel
 import com.example.missingcatsv2.R
 import com.example.missingcatsv2.databinding.FragmentSingleCatBinding
@@ -18,6 +19,7 @@ class SingleCatFragment : Fragment() {
     private var _binding: FragmentSingleCatBinding? = null
     private val binding get() = _binding!!
     private val catsViewModel: CatsViewModel by activityViewModels()
+    private val authenticationViewModel: AuthenticationViewModel by activityViewModels()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -39,6 +41,10 @@ class SingleCatFragment : Fragment() {
             return
         } else {
             binding.catPresentation.text = cat.toLongString()
+        }
+
+        if(authenticationViewModel.userMutableLiveData.value?.email == cat.userId) {
+            binding.buttonDeleteCat.visibility = View.VISIBLE
         }
 
         binding.buttonSecond.setOnClickListener {

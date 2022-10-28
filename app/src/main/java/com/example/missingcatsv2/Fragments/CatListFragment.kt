@@ -58,12 +58,21 @@ class CatListFragment : Fragment() {
             // TODO: remove all Log.d statements
             Log.d("Apple", "We are before if")
             if (cats != null) {
+                // TODO: would be nice if the logged in user's own cats were marked in another color
+                /*
+                for (cat in cats) {
+                    if(cat.userId == authenticationViewModel.userMutableLiveData.value?.email) {
+                        binding.recyclerView.layoutManager
+                    }
+                }
+                 */
                 val adapter = MyAdapter(cats) { position ->
                     Log.d("Apple", "Element number $position was pressed")
                     val action =
                         CatListFragmentDirections.actionFirstFragmentToSecondFragment(position)
                     findNavController().navigate(action)
                 }
+
 
                 var columns = 2
 
