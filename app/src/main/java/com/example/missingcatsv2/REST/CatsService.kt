@@ -10,4 +10,7 @@ interface CatsService {
 
     @POST("cats")
     fun saveCat(@Body cat: Cat): Call<Cat>
+
+    @DELETE("cats/{id}")
+    fun deleteCat(@Path("id") id: Int): Call<Cat>
 }

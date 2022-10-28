@@ -64,4 +64,23 @@ class CatsRepository {
             }
         })
     }
+
+    fun deleteBook(id: Int) {
+        catsService.deleteCat(id).enqueue(object : Callback<Cat> {
+            override fun onResponse(call: Call<Cat>, response: Response<Cat>) {
+                if (response.isSuccessful) {
+                    Log.d("APPLE", "Deleted: " + response.body())
+                    updateMessageLiveData.postValue("Updated: " + response.body())
+                } else {
+                    val message = response.code().toString() + " " + response.message()
+                    errorMessageLiveData.postValue(message)
+                    Log.d("APPLE", message)
+                }
+            }
+            override fun onFailure(call: Call<Cat>, t: Throwable) {
+                errorMessageLiveData.postValue(t.message)
+                Log.d("APPLE", t.message!!)
+            }
+        })
+    }
 }

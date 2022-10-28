@@ -54,6 +54,12 @@ class SingleCatFragment : Fragment() {
         binding.catPresentation.setOnClickListener {
             findNavController().navigate(R.id.action_SecondFragment_to_FirstFragment)
         }
+
+        binding.buttonDeleteCat.setOnClickListener {
+            // TODO: Why does list of cats not auto-update when a cat is deleted?
+            catsViewModel.delete(cat.id)
+            findNavController().popBackStack()
+        }
     }
 
     override fun onDestroyView() {
