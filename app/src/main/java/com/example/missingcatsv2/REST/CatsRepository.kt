@@ -65,7 +65,7 @@ class CatsRepository {
         })
     }
 
-    fun deleteBook(id: Int) {
+    fun deleteCat(id: Int) {
         catsService.deleteCat(id).enqueue(object : Callback<Cat> {
             override fun onResponse(call: Call<Cat>, response: Response<Cat>) {
                 if (response.isSuccessful) {

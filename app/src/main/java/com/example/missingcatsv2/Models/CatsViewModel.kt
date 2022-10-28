@@ -27,7 +27,7 @@ class CatsViewModel : ViewModel() {
     }
 
     fun delete(id: Int) {
-        repository.deleteBook(id)
+        repository.deleteCat(id)
     }
 
 }
