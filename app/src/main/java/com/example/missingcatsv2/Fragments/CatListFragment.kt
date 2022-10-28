@@ -8,9 +8,11 @@ import android.view.LayoutInflater
 import android.view.MenuItem
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.view.isVisible
 import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.GridLayoutManager
+import com.example.missingcatsv2.Models.AuthenticationViewModel
 import com.example.missingcatsv2.Models.CatsViewModel
 import com.example.missingcatsv2.MyAdapter
 import com.example.missingcatsv2.R
@@ -29,6 +31,7 @@ class CatListFragment : Fragment() {
     private val binding get() = _binding!!
 
     private val catsViewModel: CatsViewModel by activityViewModels()
+    private val authenticationViewModel: AuthenticationViewModel by activityViewModels()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -42,6 +45,13 @@ class CatListFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+        authenticationViewModel.userMutableLiveData.observe(viewLifecycleOwner) { firebaseUser ->
+            if (firebaseUser != null) {
+                binding.buttonCreateCat.visibility = View.VISIBLE
+            }
+        }
+
 
         catsViewModel.catsLiveData.observe(viewLifecycleOwner) { cats ->
             binding.recyclerView.visibility = if (cats == null) View.GONE else View.VISIBLE

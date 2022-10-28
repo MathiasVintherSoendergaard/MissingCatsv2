@@ -6,12 +6,14 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.activityViewModels
+import androidx.navigation.findNavController
 import androidx.navigation.fragment.findNavController
 import com.example.missingcatsv2.Models.AuthenticationViewModel
 import com.example.missingcatsv2.databinding.FragmentLogInBinding
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.ktx.Firebase
+import okhttp3.internal.wait
 
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -46,7 +48,8 @@ class LogInFragment : Fragment() {
         val currentUser = authenticationViewModel.userMutableLiveData.value
 
         binding.messageView.text = "Current user ${currentUser?.email}"
-        binding.signIn.setOnClickListener {
+
+        binding.buttonSignIn.setOnClickListener {
             val email = binding.emailInputField.text.toString().trim()
             val password = binding.passwordInputField.text.toString().trim()
 
@@ -61,6 +64,17 @@ class LogInFragment : Fragment() {
             }
 
             authenticationViewModel.logIn(email, password)
+
+            // TODO: why does line 70 not update messageView?
+            // update: there is, for some reason, no value in the string as it stands
+            binding.messageView.text = "Current user ${authenticationViewModel.userMutableLiveData.value?.toString()}"
+            // TODO: how do I move back to catlist fragment when a login has been succesful?
+            /*
+            val navController = findNavController()
+            navController.popBackStack(R.id.catlistfragment, false)
+             */
+
+
 
         /*
             auth.signInWithEmailAndPassword(email, password).addOnCompleteListener { task ->

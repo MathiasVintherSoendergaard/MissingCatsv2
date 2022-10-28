@@ -1,6 +1,7 @@
 package com.example.missingcatsv2
 
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -10,6 +11,7 @@ import com.example.missingcatsv2.Models.Cat
 import com.example.missingcatsv2.Models.CatsViewModel
 import com.example.missingcatsv2.databinding.FragmentCreateCatBinding
 import androidx.navigation.fragment.findNavController
+import java.util.*
 
 
 // TODO: Rename parameter arguments, choose names that match
@@ -49,11 +51,10 @@ class CreateCatFragment : Fragment() {
             val catReward: Int = binding.catRewardInput.text.toString().trim().toInt()
             val catUserID: String = binding.catUserIdInput.text.toString().trim()
 
-            val catDay: Int = binding.catDateInput.dayOfMonth
-            val catMonth: Int = binding.catDateInput.month
-            val catYear: Int = binding.catDateInput.year
+            val calendar: Calendar = Calendar.getInstance()
+            calendar.set(binding.catDateInput.year, binding.catDateInput.month, binding.catDateInput.dayOfMonth)
+            val catDate = calendar.timeInMillis / 1000
 
-            val catDate: Long = 124856238764234 // binding.catDateInput.text.toString().toLong()
             val catPictureURL: String = binding.catPictureUrlInput.text.toString().trim()
 
             val lostCat = Cat(0, catName, catDescription, catPlace, catReward, catUserID, catDate, catPictureURL)

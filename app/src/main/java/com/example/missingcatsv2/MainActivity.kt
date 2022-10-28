@@ -81,6 +81,7 @@ class MainActivity : AppCompatActivity() {
                 navController.navigate(R.id.LogInFragment)
                 true
             }
+            // TODO: how do I get the "Create cat" button to go away when a logout happens?
             R.id.action_logout -> {
                 if (authenticationViewModel.userMutableLiveData.value != null) {
                     authenticationViewModel.signOut()
