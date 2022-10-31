@@ -12,6 +12,7 @@ import com.example.missingcatsv2.Models.CatsViewModel
 import com.example.missingcatsv2.databinding.FragmentCreateCatBinding
 import androidx.navigation.fragment.findNavController
 import com.example.missingcatsv2.Models.AuthenticationViewModel
+import com.google.android.material.snackbar.Snackbar
 import java.util.*
 
 
@@ -47,6 +48,7 @@ class CreateCatFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         binding.buttonCreateCat.setOnClickListener {
+            // TODO: error handling all over the place
             val catName: String = binding.catNameInput.text.toString().trim()
             val catDescription: String = binding.catDescriptionInput.text.toString().trim()
             val catPlace: String = binding.catPlaceInput.text.toString().trim()
@@ -64,6 +66,7 @@ class CreateCatFragment : Fragment() {
             catsViewModel.add(lostCat)
 
             findNavController().popBackStack()
+
         }
 
     }
