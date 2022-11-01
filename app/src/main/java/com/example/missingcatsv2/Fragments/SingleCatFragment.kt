@@ -1,10 +1,11 @@
 package com.example.missingcatsv2.Fragments
 
 import android.os.Bundle
+import android.util.Log
+import android.view.*
 import androidx.fragment.app.Fragment
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
+import android.widget.LinearLayout
+import androidx.core.view.GestureDetectorCompat
 import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.findNavController
 import com.example.missingcatsv2.Models.AuthenticationViewModel
@@ -18,6 +19,7 @@ import com.example.missingcatsv2.databinding.FragmentSingleCatBinding
 class SingleCatFragment : Fragment() {
     private var _binding: FragmentSingleCatBinding? = null
     private val binding get() = _binding!!
+    private lateinit var mDetector: GestureDetectorCompat
     private val catsViewModel: CatsViewModel by activityViewModels()
     private val authenticationViewModel: AuthenticationViewModel by activityViewModels()
 
@@ -26,6 +28,14 @@ class SingleCatFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         _binding = FragmentSingleCatBinding.inflate(inflater, container, false)
+
+        mDetector = GestureDetectorCompat(requireContext(), MyGestureListener())
+        val rootView: LinearLayout = binding.root
+        rootView.setOnTouchListener { view, motionEvent ->
+            mDetector.onTouchEvent(motionEvent)
+            Log.d("APPLE", "Touch: " + motionEvent.x + " " + motionEvent.y)
+            true
+        }
         return binding.root
     }
 
@@ -65,5 +75,29 @@ class SingleCatFragment : Fragment() {
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null
+    }
+
+    private inner class MyGestureListener : GestureDetector.SimpleOnGestureListener() {
+
+        override fun onScroll(
+            ev1: MotionEvent, ev2: MotionEvent, distanceX: Float, distanceY: Float
+        ): Boolean {
+            Log.d("APPLE", "onScroll: $ev1 \n $ev2")
+            doIt(ev1, ev2)
+            return super.onScroll(ev1, ev2, distanceX, distanceY)
+        }
+
+        private fun doIt(ev1: MotionEvent, ev2: MotionEvent) {
+            val xDiff = ev2.x - ev1.x
+            if (xDiff > 0) {
+                findNavController() // inner keyword on MyGesture Listener
+                    .navigate(R.id.action_SecondFragment_to_FirstFragment)
+            }
+        }
+
+
+
+
+
     }
 }
