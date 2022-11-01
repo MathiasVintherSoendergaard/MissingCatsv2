@@ -5,10 +5,8 @@ import android.os.Bundle
 import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
-import android.view.MenuItem
 import android.view.View
 import android.view.ViewGroup
-import androidx.core.view.isVisible
 import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.GridLayoutManager
@@ -17,7 +15,7 @@ import com.example.missingcatsv2.Models.CatsViewModel
 import com.example.missingcatsv2.MyAdapter
 import com.example.missingcatsv2.R
 import com.example.missingcatsv2.databinding.FragmentCatListBinding
-import com.google.android.material.snackbar.Snackbar
+
 
 /**
  * A simple [Fragment] subclass as the default destination in the navigation.
@@ -37,10 +35,8 @@ class CatListFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-
         _binding = FragmentCatListBinding.inflate(inflater, container, false)
         return binding.root
-
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -52,27 +48,18 @@ class CatListFragment : Fragment() {
             }
         }
 
-
         catsViewModel.catsLiveData.observe(viewLifecycleOwner) { cats ->
             binding.recyclerView.visibility = if (cats == null) View.GONE else View.VISIBLE
             // TODO: remove all Log.d statements
             Log.d("Apple", "We are before if")
             if (cats != null) {
                 // TODO: would be nice if the logged in user's own cats were marked in another color
-                /*
-                for (cat in cats) {
-                    if(cat.userId == authenticationViewModel.userMutableLiveData.value?.email) {
-                        binding.recyclerView.layoutManager
-                    }
-                }
-                 */
                 val adapter = MyAdapter(cats) { position ->
                     Log.d("Apple", "Element number $position was pressed")
                     val action =
                         CatListFragmentDirections.actionFirstFragmentToSecondFragment(position)
                     findNavController().navigate(action)
                 }
-
 
                 var columns = 2
 

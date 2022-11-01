@@ -13,9 +13,6 @@ import com.example.missingcatsv2.Models.CatsViewModel
 import com.example.missingcatsv2.R
 import com.example.missingcatsv2.databinding.FragmentSingleCatBinding
 
-/**
- * A simple [Fragment] subclass as the second destination in the navigation.
- */
 class SingleCatFragment : Fragment() {
     private var _binding: FragmentSingleCatBinding? = null
     private val binding get() = _binding!!
@@ -94,10 +91,5 @@ class SingleCatFragment : Fragment() {
                     .navigate(R.id.action_SecondFragment_to_FirstFragment)
             }
         }
-
-
-
-
-
     }
 }

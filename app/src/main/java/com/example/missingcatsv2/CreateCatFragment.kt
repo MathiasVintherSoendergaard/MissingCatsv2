@@ -1,7 +1,6 @@
 package com.example.missingcatsv2
 
 import android.os.Bundle
-import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -21,11 +20,6 @@ import java.util.*
 private const val ARG_PARAM1 = "param1"
 private const val ARG_PARAM2 = "param2"
 
-/**
- * A simple [Fragment] subclass.
- * Use the [CreateCatFragment.newInstance] factory method to
- * create an instance of this fragment.
- */
 class CreateCatFragment : Fragment() {
     // TODO: Rename and change types of parameters
 
@@ -62,14 +56,27 @@ class CreateCatFragment : Fragment() {
             val catPictureURL: String = binding.catPictureUrlInput.text.toString().trim()
 
             val lostCat = Cat(0, catName, catDescription, catPlace, catReward, catUserID, catDate, catPictureURL)
+            //
+            /*
+            when {
+                catName.isEmpty() ->
+                    Snackbar.make(binding.root, "Error, needs a name", Snackbar.LENGTH_LONG).show()
+                else -> catsViewModel.add(lostCat)
+                findNavController().popBackStack()
+
+            }
+             */
 
             catsViewModel.add(lostCat)
 
             findNavController().popBackStack()
+        }
+
+
 
         }
 
-    }
+
 
     companion object {
         /**

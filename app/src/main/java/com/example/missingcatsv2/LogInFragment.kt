@@ -6,14 +6,16 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.activityViewModels
+/*
 import androidx.navigation.findNavController
 import androidx.navigation.fragment.findNavController
+ */
 import com.example.missingcatsv2.Models.AuthenticationViewModel
 import com.example.missingcatsv2.databinding.FragmentLogInBinding
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.ktx.Firebase
-import okhttp3.internal.wait
+// import okhttp3.internal.wait
 
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
