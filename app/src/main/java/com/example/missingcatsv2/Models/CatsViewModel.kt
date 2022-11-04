@@ -7,17 +7,17 @@ import com.example.missingcatsv2.REST.CatsRepository
 class CatsViewModel : ViewModel() {
     private val repository = CatsRepository()
     val catsLiveData: LiveData<List<Cat>> = repository.catsLiveData
-    val errorMessageLiveData: LiveData<String> = repository.errorMessageLiveData
-    val updateMessageLiveData: LiveData<String> = repository.updateMessageLiveData
 
     init {
-        reload()
+        getCats()
     }
 
-    fun reload() {
+    // get all cats
+    private fun getCats() {
         repository.getCats()
     }
 
+    // get specific cat from cat's index
     operator fun get(index: Int): Cat? {
         return catsLiveData.value?.get(index)
     }

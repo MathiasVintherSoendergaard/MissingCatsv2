@@ -76,17 +76,6 @@ class LogInFragment : Fragment() {
             navController.popBackStack(R.id.catlistfragment, false)
              */
 
-
-
-        /*
-            auth.signInWithEmailAndPassword(email, password).addOnCompleteListener { task ->
-                if (task.isSuccessful) {
-                    findNavController().navigate(R.id.action_logInFragment_to_FirstFragment)
-                } else {
-                    binding.messageView.text = task.exception?.message
-                }
-            }
-            */
         }
         binding.buttonCreateUser.setOnClickListener {
             val email = binding.emailInputField.text.toString().trim()
