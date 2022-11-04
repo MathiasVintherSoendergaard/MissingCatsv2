@@ -22,7 +22,8 @@
             <ImageView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:src="@drawable/_56x256bb">
+                android:src="@drawable/_56x256bb"
+                android:contentDescription="@string/single_cat_imageview_description">
             </ImageView>
 
             <TextView
@@ -30,7 +31,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="@string/single_cat_textview_placeholder"
-                android:textSize="26dp">
+                android:textSize="26sp">
             </TextView>
 
             <ImageView

@@ -3,7 +3,7 @@ package com.example.missingcatsv2.Models
 import java.io.Serializable
 import java.sql.Timestamp
 import java.text.SimpleDateFormat
-
+import java.util.*
 
 
 data class Cat(
@@ -20,11 +20,11 @@ data class Cat(
                 "It is described as follows: $description, and has been missing since ${getDate()}." +
                 "The reward for returning it is $reward."
     }
+
     // method for converting Unix timestamp to dd/m/yyyy data format
     private fun getDate(): String? {
-        val timeStamp = Timestamp(this.date*1000)
-        val simpleDate = SimpleDateFormat("dd/M/yyyy")
-        val currentDate = simpleDate.format(timeStamp)
-        return currentDate
+        val timeStamp = Timestamp(this.date * 1000)
+        val simpleDate = SimpleDateFormat("d/M/yyyy", Locale("dan"))
+        return simpleDate.format(timeStamp)
     }
 }
