@@ -3,9 +3,9 @@ package com.example.missingcatsv2.Fragments
 import android.os.Bundle
 import android.util.Log
 import android.view.*
-import androidx.fragment.app.Fragment
 import android.widget.LinearLayout
 import androidx.core.view.GestureDetectorCompat
+import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.findNavController
 import com.example.missingcatsv2.Models.AuthenticationViewModel
@@ -58,10 +58,6 @@ class SingleCatFragment : Fragment() {
             findNavController().navigate(R.id.action_SecondFragment_to_FirstFragment)
         }
 
-        binding.catPresentation.setOnClickListener {
-            findNavController().navigate(R.id.action_SecondFragment_to_FirstFragment)
-        }
-
         binding.buttonDeleteCat.setOnClickListener {
             // TODO: Why does list of cats not auto-update when a cat is deleted?
             catsViewModel.delete(cat.id)
@@ -76,16 +72,34 @@ class SingleCatFragment : Fragment() {
 
     private inner class MyGestureListener : GestureDetector.SimpleOnGestureListener() {
 
-        override fun onScroll(
-            ev1: MotionEvent, ev2: MotionEvent, distanceX: Float, distanceY: Float
+        private val SWIPE_MIN_DISTANCE = 50
+        private val SWIPE_THRESHOLD_VELOCITY = 50
+
+        override fun onFling(
+            e1: MotionEvent?,
+            e2: MotionEvent?,
+            velocityX: Float,
+            velocityY: Float
         ): Boolean {
-            Log.d("APPLE", "onScroll: $ev1 \n $ev2")
-            doIt(ev1, ev2)
-            return super.onScroll(ev1, ev2, distanceX, distanceY)
+            try {
+                // left to right swipe
+                if (e2!!.x - e1!!.x > SWIPE_MIN_DISTANCE
+                    && Math.abs(velocityX) > SWIPE_THRESHOLD_VELOCITY
+                ) {
+                    doIt(e2, e1)
+                } else if (e1.x - e2.x > SWIPE_MIN_DISTANCE
+                    && Math.abs(velocityX) > SWIPE_THRESHOLD_VELOCITY
+                ) {
+                    //DO SOMETHING...
+                }
+            } catch (e: Exception) {
+                return false
+            }
+            return true
         }
 
         private fun doIt(ev1: MotionEvent, ev2: MotionEvent) {
-            val xDiff = ev2.x - ev1.x
+            val xDiff = ev1.x - ev2.x
             if (xDiff > 0) {
                 findNavController() // inner keyword on MyGesture Listener
                     .navigate(R.id.action_SecondFragment_to_FirstFragment)
