@@ -37,4 +37,12 @@ class CatsViewModel : ViewModel() {
     fun sortByNameDescending() {
         repository.sortByNameDescending()
     }
+
+    fun sortByDate() {
+        repository.sortByDate()
+    }
+
+    fun sortByDateDescending() {
+        repository.sortByDateDescending()
+    }
 }

@@ -85,11 +85,20 @@ class CatsRepository {
         })
     }
 
+    // Sorting functions
     fun sortByName() {
         catsLiveData.value = catsLiveData.value?.sortedBy { it.name }
     }
 
     fun sortByNameDescending() {
         catsLiveData.value = catsLiveData.value?.sortedByDescending { it.name }
+    }
+
+    fun sortByDate() {
+        catsLiveData.value = catsLiveData.value?.sortedBy { it.date }
+    }
+
+    fun sortByDateDescending() {
+        catsLiveData.value = catsLiveData.value?.sortedByDescending { it.date }
     }
 }

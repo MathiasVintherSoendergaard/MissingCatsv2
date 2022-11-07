@@ -21,5 +21,7 @@
     <array name="sortings">
         <item>Name ascending</item>
         <item>Name descending</item>
+        <item>Least recent date</item>
+        <item>Most recent date</item>
     </array>
 </resources>

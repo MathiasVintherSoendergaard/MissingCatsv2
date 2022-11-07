@@ -93,6 +93,8 @@ class CatListFragment : Fragment() {
             when (binding.spinnerSorting.selectedItemPosition) {
                 0 -> catsViewModel.sortByName()
                 1 -> catsViewModel.sortByNameDescending()
+                2 -> catsViewModel.sortByDate()
+                3 -> catsViewModel.sortByDateDescending()
             }
         }
 
