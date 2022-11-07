@@ -66,6 +66,7 @@ class SingleCatFragment : Fragment() {
         // TODO: delete?
         binding.buttonSecond.setOnClickListener {
             findNavController().navigate(R.id.action_SecondFragment_to_FirstFragment)
+            catsViewModel.getCats()
         }
         // delete button, sends user back to cat list fragment when cat is deleted
         binding.buttonDeleteCat.setOnClickListener {
@@ -113,6 +114,7 @@ class SingleCatFragment : Fragment() {
         private fun moveBackToCatList(ev1: MotionEvent, ev2: MotionEvent) {
             val xDiff = ev1.x - ev2.x
             if (xDiff > 0) {
+                catsViewModel.getCats()
                 findNavController() // inner keyword on MyGesture Listener
                     .navigate(R.id.action_SecondFragment_to_FirstFragment)
             }

@@ -13,7 +13,7 @@ class CatsViewModel : ViewModel() {
     }
 
     // get all cats
-    private fun getCats() {
+    fun getCats() {
         repository.getCats()
     }
 
@@ -30,4 +30,11 @@ class CatsViewModel : ViewModel() {
         repository.deleteCat(id)
     }
 
+    fun sortByName() {
+        repository.sortByName()
+    }
+
+    fun sortByNameDescending() {
+        repository.sortByNameDescending()
+    }
 }

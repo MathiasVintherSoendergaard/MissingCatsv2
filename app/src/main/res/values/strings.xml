@@ -17,4 +17,9 @@
     <string name="log_out_menu_item_label">Log out</string>
 
     <string name="single_cat_imageview_description">Picture of cat</string>
+
+    <array name="sortings">
+        <item>Name ascending</item>
+        <item>Name descending</item>
+    </array>
 </resources>

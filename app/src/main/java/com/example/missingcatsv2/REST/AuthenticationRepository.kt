@@ -36,7 +36,4 @@ class AuthenticationRepository() {
         auth.signOut()
         userMutableLiveData.postValue(auth.currentUser)
     }
-
-
-
 }

@@ -89,6 +89,13 @@ class CatListFragment : Fragment() {
             findNavController().navigate(R.id.action_CatListFragment_to_createCatFragment)
         }
 
+        binding.buttonSort.setOnClickListener {
+            when (binding.spinnerSorting.selectedItemPosition) {
+                0 -> catsViewModel.sortByName()
+                1 -> catsViewModel.sortByNameDescending()
+            }
+        }
+
 }
     override fun onDestroyView() {
         super.onDestroyView()

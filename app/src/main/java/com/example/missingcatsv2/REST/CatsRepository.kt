@@ -71,6 +71,7 @@ class CatsRepository {
                 if (response.isSuccessful) {
                     Log.d("APPLE", "Deleted: " + response.body())
                     updateMessageLiveData.postValue("Updated: " + response.body())
+                    getCats()
                 } else {
                     val message = response.code().toString() + " " + response.message()
                     errorMessageLiveData.postValue(message)
@@ -82,5 +83,13 @@ class CatsRepository {
                 Log.d("APPLE", t.message!!)
             }
         })
+    }
+
+    fun sortByName() {
+        catsLiveData.value = catsLiveData.value?.sortedBy { it.name }
+    }
+
+    fun sortByNameDescending() {
+        catsLiveData.value = catsLiveData.value?.sortedByDescending { it.name }
     }
 }
