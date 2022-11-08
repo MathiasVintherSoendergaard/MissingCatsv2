@@ -45,4 +45,8 @@ class CatsViewModel : ViewModel() {
     fun sortByDateDescending() {
         repository.sortByDateDescending()
     }
+
+    fun filterByName(name: String) {
+        repository.filterByName(name)
+    }
 }

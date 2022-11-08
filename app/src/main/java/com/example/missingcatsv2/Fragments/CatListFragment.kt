@@ -98,6 +98,11 @@ class CatListFragment : Fragment() {
             }
         }
 
+        binding.buttonFilter.setOnClickListener {
+            val name = binding.edittextFilterTitle.text.toString().trim()
+            catsViewModel.filterByName(name)
+        }
+
 }
     override fun onDestroyView() {
         super.onDestroyView()

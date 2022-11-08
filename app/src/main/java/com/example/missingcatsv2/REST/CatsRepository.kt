@@ -101,4 +101,13 @@ class CatsRepository {
     fun sortByDateDescending() {
         catsLiveData.value = catsLiveData.value?.sortedByDescending { it.date }
     }
+
+    // filtering function
+    fun filterByName(name: String) {
+        if (name.isBlank()) {
+            getCats()
+        } else {
+            catsLiveData.value = catsLiveData.value?.filter {cat -> cat.name.contains(name)}
+        }
+    }
 }
