@@ -47,7 +47,7 @@ class CreateCatFragment : Fragment() {
             val catDescription: String = binding.catDescriptionInput.text.toString().trim()
             val catPlace: String = binding.catPlaceInput.text.toString().trim()
             val catReward: Int = binding.catRewardInput.text.toString().trim().toInt()
-            val catUserID: String = authenticationViewModel.userMutableLiveData.value?.email.toString() // binding.catUserIdInput.text.toString().trim()
+            val catUserID: String = authenticationViewModel.userMutableLiveData.value?.email.toString()
 
             val calendar: Calendar = Calendar.getInstance()
             calendar.set(binding.catDateInput.year, binding.catDateInput.month, binding.catDateInput.dayOfMonth)

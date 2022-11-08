@@ -12,7 +12,7 @@ data class Cat(
 
     // short toString for RecyclerView
     override fun toString(): String {
-        return "This is $name. It comes from $place. It has been missing since ${getDate()}."
+        return "This is $name. It comes from $place. It has been missing since ${getDate()}, and the reward is $reward."
     }
     // long toString for single cat presentation
     fun toLongString(): String {

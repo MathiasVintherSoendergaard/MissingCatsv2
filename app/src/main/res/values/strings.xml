@@ -19,9 +19,14 @@
     <string name="single_cat_imageview_description">Picture of cat</string>
 
     <array name="sortings">
-        <item>Name ascending</item>
-        <item>Name descending</item>
+        <item>Reward ascending</item>
+        <item>Reward descending</item>
         <item>Least recent date</item>
         <item>Most recent date</item>
+    </array>
+
+    <array name="filterings">
+        <item>Reward</item>
+        <item>Place</item>
     </array>
 </resources>

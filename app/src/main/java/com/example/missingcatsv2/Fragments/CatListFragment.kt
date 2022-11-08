@@ -2,6 +2,8 @@ package com.example.missingcatsv2.Fragments
 
 import android.content.res.Configuration
 import android.os.Bundle
+import android.text.InputType.TYPE_CLASS_NUMBER
+import android.text.InputType.TYPE_CLASS_TEXT
 import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -91,16 +93,31 @@ class CatListFragment : Fragment() {
 
         binding.buttonSort.setOnClickListener {
             when (binding.spinnerSorting.selectedItemPosition) {
-                0 -> catsViewModel.sortByName()
-                1 -> catsViewModel.sortByNameDescending()
+                0 -> catsViewModel.sortByReward()
+                1 -> catsViewModel.sortByRewardDescending()
                 2 -> catsViewModel.sortByDate()
                 3 -> catsViewModel.sortByDateDescending()
             }
         }
 
+        binding.filterParameter.setOnClickListener {
+            binding.filterParameter.text.clear()
+            when (binding.spinnerFiltering.selectedItemPosition) {
+                0 -> binding.filterParameter.inputType = TYPE_CLASS_NUMBER
+                1 -> binding.filterParameter.inputType = TYPE_CLASS_TEXT
+            }
+        }
+
         binding.buttonFilter.setOnClickListener {
-            val name = binding.edittextFilterTitle.text.toString().trim()
-            catsViewModel.filterByName(name)
+            val filterParameter = binding.filterParameter.text.toString().trim()
+            if (filterParameter.isEmpty()) {
+                binding.filterParameter.error = "Write something!"
+                return@setOnClickListener
+            }
+            when (binding.spinnerFiltering.selectedItemPosition) {
+                0 -> catsViewModel.filterByReward(filterParameter.toInt())
+                1 -> catsViewModel.filterByPlace(filterParameter)
+            }
         }
 
 }

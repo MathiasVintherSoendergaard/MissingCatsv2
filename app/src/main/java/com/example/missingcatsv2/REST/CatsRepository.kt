@@ -86,12 +86,12 @@ class CatsRepository {
     }
 
     // Sorting functions
-    fun sortByName() {
-        catsLiveData.value = catsLiveData.value?.sortedBy { it.name }
+    fun sortByReward() {
+        catsLiveData.value = catsLiveData.value?.sortedBy { it.reward }
     }
 
-    fun sortByNameDescending() {
-        catsLiveData.value = catsLiveData.value?.sortedByDescending { it.name }
+    fun sortByRewardDescending() {
+        catsLiveData.value = catsLiveData.value?.sortedByDescending { it.reward }
     }
 
     fun sortByDate() {
@@ -103,11 +103,19 @@ class CatsRepository {
     }
 
     // filtering function
-    fun filterByName(name: String) {
-        if (name.isBlank()) {
+    fun filterByPlace(place: String) {
+        if (place.isBlank()) {
             getCats()
         } else {
-            catsLiveData.value = catsLiveData.value?.filter {cat -> cat.name.contains(name)}
+            catsLiveData.value = catsLiveData.value?.filter {cat -> cat.place.contains(place)}
+        }
+    }
+
+    fun filterByReward(reward: Int) {
+        if (reward <= 0) {
+            getCats()
+        } else {
+            catsLiveData.value = catsLiveData.value?.filter { cat -> cat.reward >= reward }
         }
     }
 }

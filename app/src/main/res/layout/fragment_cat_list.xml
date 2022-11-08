@@ -9,25 +9,33 @@
     android:gravity="center"
     tools:context=".Fragments.CatListFragment">
 
-
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal">
 
-        <Button
-            android:id="@+id/button_sort"
+        <TextView
+            android:id="@+id/text_view_sort_by"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Sort by">
-        </Button>
+        </TextView>
 
         <Spinner
+            android:layout_weight="1"
             android:id="@+id/spinner_sorting"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:entries="@array/sortings" />
 
+        <Button
+            android:layout_weight="1"
+            android:id="@+id/button_sort"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="SORT">
+        </Button>
+
     </LinearLayout>
 
     <LinearLayout
@@ -35,21 +43,36 @@
         android:layout_height="wrap_content"
         android:orientation="horizontal">
 
-        <EditText
-            android:id="@+id/edittext_filter_title"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="10"
-            android:hint="Title" />
-
-        <Button
-            android:id="@+id/button_filter"
+        <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Filter" />
+            android:text="Filter by">
+        </TextView>
 
+        <Spinner
+            android:layout_weight="1"
+            android:id="@+id/spinner_filtering"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:entries="@array/filterings" />
+
+        <EditText
+            android:id="@+id/filter_parameter"
+            android:layout_weight="1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:hint="Filter parameter">
+        </EditText>
+        <!--
+
+        -->
     </LinearLayout>
 
+    <Button
+        android:id="@+id/button_filter"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Filter" />
 
     <ScrollView
         android:layout_width="match_parent"

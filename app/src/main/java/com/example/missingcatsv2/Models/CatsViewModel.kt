@@ -30,12 +30,12 @@ class CatsViewModel : ViewModel() {
         repository.deleteCat(id)
     }
 
-    fun sortByName() {
-        repository.sortByName()
+    fun sortByReward() {
+        repository.sortByReward()
     }
 
-    fun sortByNameDescending() {
-        repository.sortByNameDescending()
+    fun sortByRewardDescending() {
+        repository.sortByRewardDescending()
     }
 
     fun sortByDate() {
@@ -46,7 +46,12 @@ class CatsViewModel : ViewModel() {
         repository.sortByDateDescending()
     }
 
-    fun filterByName(name: String) {
-        repository.filterByName(name)
+    // filtering methods
+    fun filterByPlace(place: String) {
+        repository.filterByPlace(place)
+    }
+
+    fun filterByReward(reward: Int) {
+        repository.filterByReward(reward)
     }
 }
