@@ -17,8 +17,6 @@ class SingleCatFragment : Fragment() {
     // instantiation of bindings
     private var _binding: FragmentSingleCatBinding? = null
     private val binding get() = _binding!!
-    // instantiation of gesture detector
-    private lateinit var mDetector: GestureDetectorCompat
     // instantiation of CatsViewModel and AuthenticationViewModel
     private val catsViewModel: CatsViewModel by activityViewModels()
     private val authenticationViewModel: AuthenticationViewModel by activityViewModels()
@@ -28,15 +26,6 @@ class SingleCatFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         _binding = FragmentSingleCatBinding.inflate(inflater, container, false)
-
-        mDetector = GestureDetectorCompat(requireContext(), MyGestureListener())
-        val rootView: LinearLayout = binding.root
-        // TODO: what is this warning message?
-        rootView.setOnTouchListener { view, motionEvent ->
-            mDetector.onTouchEvent(motionEvent)
-            Log.d("APPLE", "Touch: " + motionEvent.x + " " + motionEvent.y)
-            true
-        }
         return binding.root
     }
 
@@ -81,43 +70,4 @@ class SingleCatFragment : Fragment() {
         _binding = null
     }
 
-    private inner class MyGestureListener : GestureDetector.SimpleOnGestureListener() {
-        // TODO: both horizontal and vertical swipes trigger the function - only horizontal should work
-        // TODO: understand and comment logic of gesture detection
-        // Minimum distance and velocity for the gesture to be reacted upon
-        private val SWIPE_MIN_DISTANCE = 50
-        private val SWIPE_THRESHOLD_VELOCITY = 50
-
-        override fun onFling(
-            e1: MotionEvent?,
-            e2: MotionEvent?,
-            velocityX: Float,
-            velocityY: Float
-        ): Boolean {
-            try {
-                // left to right swipe
-                if (e2!!.x - e1!!.x > SWIPE_MIN_DISTANCE
-                    && Math.abs(velocityX) > SWIPE_THRESHOLD_VELOCITY
-                ) {
-                    moveBackToCatList(e2, e1)
-                } else if (e1.x - e2.x > SWIPE_MIN_DISTANCE
-                    && Math.abs(velocityX) > SWIPE_THRESHOLD_VELOCITY
-                ) {
-                    //DO SOMETHING...
-                }
-            } catch (e: Exception) {
-                return false
-            }
-            return true
-        }
-
-        private fun moveBackToCatList(ev1: MotionEvent, ev2: MotionEvent) {
-            val xDiff = ev1.x - ev2.x
-            if (xDiff > 0) {
-                catsViewModel.getCats()
-                findNavController() // inner keyword on MyGesture Listener
-                    .navigate(R.id.action_SecondFragment_to_FirstFragment)
-            }
-        }
-    }
 }

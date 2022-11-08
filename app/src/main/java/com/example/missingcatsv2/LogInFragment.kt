@@ -1,11 +1,16 @@
 package com.example.missingcatsv2
 
 import android.os.Bundle
+import android.view.GestureDetector
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
+import android.view.MotionEvent
 import android.view.View
 import android.view.ViewGroup
+import android.widget.LinearLayout
+import androidx.core.view.GestureDetectorCompat
 import androidx.fragment.app.activityViewModels
+import androidx.navigation.fragment.findNavController
 /*
 import androidx.navigation.findNavController
 import androidx.navigation.fragment.findNavController
@@ -31,17 +36,23 @@ class LogInFragment : Fragment() {
     // TODO: Rename and change types of parameters
     private var _binding: FragmentLogInBinding? = null
     private val binding get() = _binding!!
-    // auth er probably overflødig nu
-    private lateinit var auth: FirebaseAuth
     private val authenticationViewModel: AuthenticationViewModel by activityViewModels()
-
+    private lateinit var mDetector: GestureDetectorCompat
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        auth = Firebase.auth
         _binding = FragmentLogInBinding.inflate(inflater, container, false)
+
+        mDetector = GestureDetectorCompat(requireContext(), MyGestureListener())
+        val rootView: LinearLayout = binding.root
+        // TODO: what does this warning message mean?
+        rootView.setOnTouchListener { view, motionEvent ->
+            mDetector.onTouchEvent(motionEvent)
+            true
+        }
+
         return binding.root
     }
 
@@ -104,5 +115,36 @@ class LogInFragment : Fragment() {
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null
+    }
+    private inner class MyGestureListener : GestureDetector.SimpleOnGestureListener() {
+        private val SWIPE_MIN_DISTANCE = 50
+        private val SWIPE_THRESHOLD_VELOCITY = 50
+
+        override fun onFling(
+            e1: MotionEvent?,
+            e2: MotionEvent?,
+            velocityX: Float,
+            velocityY: Float
+        ): Boolean {
+            try {
+                if (e2!!.x - e1!!.x > SWIPE_MIN_DISTANCE &&
+                    Math.abs(velocityX) > SWIPE_THRESHOLD_VELOCITY) {
+                    moveBackToCatList(e2, e1)
+                } else if (e1.x - e2.x > SWIPE_MIN_DISTANCE &&
+                        Math.abs(velocityX) > SWIPE_THRESHOLD_VELOCITY) {
+                    // TODO: why is this empty?
+                }
+            } catch (e: Exception) {
+                return false
+            }
+            return true
+        }
+
+        private fun moveBackToCatList(ev1: MotionEvent, ev2: MotionEvent) {
+            val xDiff = ev1.x - ev2.x
+            if (xDiff > 0) {
+                findNavController().navigate(R.id.action_logInFragment_to_FirstFragment)
+            }
+        }
     }
 }
